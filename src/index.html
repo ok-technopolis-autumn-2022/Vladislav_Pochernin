@@ -41,12 +41,18 @@
         <footer class="bottom">
             <span class="left-block">Осталось 3 задачи</span>
             <span class="middle-block">
-                <input type="radio" name="display-mode" value="All" checked>
-                Все
-                <input type="radio" name="display-mode" value="Active">
-                Активные
-                <input type="radio" name="display-mode" value="Completed">
-                Выполненные
+                <label for="all">
+                    <input type="radio" id="all" name="display-mode" value="all" checked>
+                    Все
+                </label>
+                <label for="active">
+                    <input type="radio" id="active" name="display-mode" value="active">
+                    Активные
+                </label>
+                <label for="completed">
+                    <input type="radio" id="completed" name="display-mode" value="completed">
+                    Выполненные
+                </label>
             </span>
             <input type="button" name="clear-completed-button" value="Очистить выполненные">
         </footer>
