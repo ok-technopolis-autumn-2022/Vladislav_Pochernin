@@ -1,0 +1,82 @@
+body {
+    transform: translate(-50%, -50%);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    background-color: #F2F2F2;
+    color: #666666;
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    margin: 0;
+    padding: 0;
+    align-items: center;
+    justify-content: center;
+}
+
+
+.todo-app {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.todo-app__header {
+    font-size: 100px;
+    color: #CCCCCC
+}
+
+.todo-app__frame {
+    background-color: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    width: 562px;
+    height: 402px;
+    border: 1px solid #333;
+}
+
+.todo-app__main-controls {
+    display: flex;
+    height: 65px;
+}
+
+.todo-app__select-all {
+    flex-grow: 1;
+}
+
+.todo-app__new-task-text {
+    font-size: 24px;
+    font-weight: normal;
+    font-style: italic;
+    flex-grow: 10;
+}
+
+.todo-app__task-list {
+    padding: 0;
+    margin: 0;
+}
+
+
+.task-item {
+    color: #000000;
+    font-size: 24px;
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    border: 1px solid #333;
+}
+
+.task-item__text {
+    margin-right: auto;
+    justify-self: start;
+    align-self: center;
+}
+
+.todo-app__actions-bar {
+    color: #888888;
+    font-size: 14px;
+    display: flex;
+    margin-top: auto;
+    justify-content: space-between;
+    border: 1px solid #333;
+}
+

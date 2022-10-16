@@ -3,19 +3,27 @@
 <head>
     <meta charset="UTF-8">
     <title>Todos</title>
+    <link href="styles/style.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
 </head>
 <body>
 <div class="todo-app">
-    <header class="todo-app__header">
-        <h1>todos</h1>
-    </header>
+    <header class="todo-app__header">todos</header>
     <main class="todo-app__frame">
         <section class="todo-app__main-controls">
             <input type="button" class="todo-app__select-all" title="Отметить все задачи">
-            <input type="text" class="todo-app__new-task-text" placeholder="Что нужно сделать?" aria-label="Текст добавляемой задчи">
+            <input type="text" class="todo-app__new-task-text" placeholder="What needs to be done?"
+                   aria-label="Текст добавляемой задчи">
         </section>
         <section class="todo-app__tasks">
             <ul class="todo-app__task-list tasks">
+                <li class="todo-app__task-item task-item">
+                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу">
+                    <span class="task-item__text">HTML</span>
+                    <input type="button" class="task-item__delete" title="Удалить задачу">
+                </li>
                 <li class="todo-app__task-item task-item">
                     <input type="checkbox" class="task-item__status" aria-label="Отметить задачу">
                     <span class="task-item__text">CSS</span>
@@ -28,33 +36,30 @@
                 </li>
                 <li class="todo-app__task-item task-item">
                     <input type="checkbox" class="task-item__status" aria-label="Отметить задачу">
-                    <span class="task-item__text">HTML</span>
-                    <input type="button" class="task-item__delete" title="Удалить задачу">
-                </li>
-                <li class="todo-app__task-item task-item">
-                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу">
-                    <span class="task-item__text">JS инструменты</span>
+                    <span class="task-item__text">JS tools</span>
                     <input type="button" class="task-item__delete" title="Удалить задачу">
                 </li>
             </ul>
         </section>
         <footer class="todo-app__actions-bar actions-bar">
-            <span class="actions-bar__active-counter">Осталось 3 задачи</span>
-            <span class="actions-bar__display-mode display-mode" role="radiogroup" aria-label="Выбор режима отображения">
+            <span class="actions-bar__active-counter">3 items left</span>
+            <span class="actions-bar__display-mode display-mode" role="radiogroup"
+                  aria-label="Выбор режима отображения">
                 <label for="all" class="display-mode__label">
                     <input type="radio" class="display-mode__button" id="all" name="display-mode" value="all" checked>
-                    Все
+                    All
                 </label>
                 <label for="active" class="display-mode__label">
                     <input type="radio" class="display-mode__button" id="active" name="display-mode" value="active">
-                    Активные
+                    Active
                 </label>
                 <label for="completed" class="display-mode__label">
-                    <input type="radio" class="display-mode__button" id="completed" name="display-mode" value="completed">
-                    Выполненные
+                    <input type="radio" class="display-mode__button" id="completed" name="display-mode"
+                           value="completed">
+                    Completed
                 </label>
             </span>
-            <input type="button" class="actions-bar__clear-completed" value="Очистить выполненные">
+            <input type="button" class="actions-bar__clear-completed" value="Clear completed">
         </footer>
     </main>
 </div>
