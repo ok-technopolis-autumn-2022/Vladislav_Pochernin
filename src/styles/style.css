@@ -19,7 +19,8 @@ body {
 .todo-app__header {
     font-size: 100px;
     font-weight: 100;
-    color: #CCCCCC
+    color: #CCCCCC;
+    height: 110px;
 }
 
 .todo-app__frame {
