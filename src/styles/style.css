@@ -40,6 +40,32 @@ body {
     flex-grow: 1;
 }
 
+.task-item__status-replica {
+    margin: 9px;
+    align-self: center;
+    width: 40px;
+    height: 40px;
+    border: 1px solid #E6E6E6;
+    border-radius: 50%;
+    background-color: #FFFFFF;
+}
+
+input[type="checkbox"]:checked + .task-item__status-replica {
+    background-image: url("../images/completed.png");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: 24px;
+    border: 1px solid #5DC2AF;
+}
+
+input[type="checkbox"]:focus + .task-item__status-replica {
+    border: 1px solid #CCCCCC;
+}
+
+input[type="checkbox"] {
+    appearance: none;
+}
+
 .todo-app__new-task-text {
     font-family: Roboto, sans-serif;
     font-style: italic;
@@ -107,11 +133,11 @@ body {
 }
 
 input[type="radio"]:checked + .display-mode__text {
-    border: 1px solid #EBDFDF
+    border: 1px solid #EBDFDF;
 }
 
 input[type="radio"]:focus + .display-mode__text {
-    border: 2px solid #EBDFDF
+    border: 2px solid #EBDFDF;
 }
 
 input[type="radio"] {
