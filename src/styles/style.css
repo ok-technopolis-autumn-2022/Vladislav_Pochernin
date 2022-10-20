@@ -25,14 +25,14 @@ body {
     background-color: #FFFFFF;
     display: flex;
     flex-direction: column;
-    min-height: 402px;
+    min-height: 400px;
     width: 562px;
-    border: 1px solid #333;
+    box-shadow: 0px 2px 4px 0px #00000033;
 }
 
 .todo-app__main-controls {
     display: flex;
-    height: 65px;
+    height: 60px;
 }
 
 .todo-app__select-all {
@@ -58,7 +58,7 @@ body {
     display: flex;
     justify-content: space-between;
     height: 60px;
-    border: 1px solid #333;
+    box-shadow: 0px -1px 0px 0px #E6E6E6 inset;
 }
 
 .task-item__text {
@@ -68,11 +68,13 @@ body {
 }
 
 .todo-app__actions-bar {
+    height: 40px;
     color: #888888;
     font-size: 14px;
     display: flex;
     margin-top: auto;
     justify-content: space-between;
-    border: 1px solid #333;
+    box-shadow: 0px 1px 0px 0px #E6E6E6 inset;
+    align-items: center;
 }
 
