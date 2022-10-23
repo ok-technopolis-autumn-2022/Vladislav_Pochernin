@@ -113,7 +113,7 @@ input[type="checkbox"] {
 }
 
 .task-item__text {
-    margin-right: auto;
+    flex-grow: 1;
     justify-self: start;
     align-self: center;
     font-size: 24px;
