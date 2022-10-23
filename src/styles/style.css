@@ -181,7 +181,6 @@ input[type="radio"] {
     background-color: #fff;
 }
 .todo-app__first-bottom {
-    content: "";
     background-color: #FFFFFF;
     width: 98%;
     height: 5px;
@@ -191,7 +190,6 @@ input[type="radio"] {
 }
 
 .todo-app__second-bottom {
-    content: "";
     background-color: #FFFFFF;
     width: 96%;
     height: 5px;
