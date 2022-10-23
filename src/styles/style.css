@@ -156,6 +156,7 @@ input[type=button][class="task-item__delete"] {
 .display-mode__text {
     padding: 2px 5px;
     border-radius: 5%;
+    border: 1px solid #ffffff;
 }
 
 input[type="radio"]:checked + .display-mode__text {
@@ -163,7 +164,7 @@ input[type="radio"]:checked + .display-mode__text {
 }
 
 input[type="radio"]:focus + .display-mode__text {
-    border: 2px solid #EBDFDF;
+    border: 1px solid #000000;
 }
 
 input[type="radio"] {
