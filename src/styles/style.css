@@ -128,7 +128,8 @@ input[type=button][class="task-item__delete"] {
     background-color: #fff;
 }
 
-.task-item:hover > .task-item__delete {
+.task-item:hover > .task-item__delete,
+.task-item__delete:focus {
     background-image: url("../images/close.png");
     background-repeat: no-repeat;
     background-position: center;
