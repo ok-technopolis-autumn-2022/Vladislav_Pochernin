@@ -36,7 +36,7 @@ body {
 .todo-app__main-controls {
     display: flex;
     height: 60px;
-    box-shadow: 0px -1px 0px 0px #E6E6E6 inset;
+    border-bottom: 1px solid #E6E6E6;
 }
 
 .todo-app__select-all {
@@ -87,7 +87,6 @@ input[type="checkbox"] {
     font-size: 24px;
     flex-grow: 1;
     border: none;
-    box-shadow: 0px -1px 0px 0px #E6E6E6 inset;
     color: #666666;
 }
 
@@ -106,7 +105,7 @@ input[type="checkbox"] {
     font-size: 24px;
     display: flex;
     height: 60px;
-    box-shadow: 0px -1px 0px 0px #E6E6E6 inset;
+    border-bottom: 1px solid #E6E6E6;
 }
 
 .task-item:hover {
@@ -127,7 +126,6 @@ input[type="checkbox"] {
 input[type=button][class="task-item__delete"] {
     border: 0px #000 solid;
     background-color: #fff;
-    box-shadow: 0px -1px 0px 0px #E6E6E6 inset;
 }
 
 .task-item:hover > .task-item__delete {
@@ -141,7 +139,6 @@ input[type=button][class="task-item__delete"] {
     height: 20px;
     align-self: center;
     margin: 11px;
-    box-shadow: none;
 }
 
 .todo-app__actions-bar {
@@ -151,7 +148,7 @@ input[type=button][class="task-item__delete"] {
     display: flex;
     margin-top: auto;
     justify-content: space-between;
-    box-shadow: 0px 1px 0px 0px #E6E6E6 inset;
+    border-top: 1px solid #E6E6E6;
     align-items: center;
     padding: 0px 12px;
 }
