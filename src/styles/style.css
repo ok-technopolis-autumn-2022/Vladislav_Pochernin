@@ -46,10 +46,10 @@ body {
     background-size: 20px;
     border: 0px #000 solid;
     background-color: #fff;
-    width: 26px;
-    height: 13px;
+    width: 54px;
+    height: 40px;
     align-self: center;
-    margin: 24px;
+    margin: 10px;
 }
 
 .task-item__status-replica {
