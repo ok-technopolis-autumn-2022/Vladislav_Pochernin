@@ -3,7 +3,8 @@ body {
     color: #666666;
     font-family: 'Roboto', sans-serif;
     display: flex;
-    margin: 250px;
+    min-height: 100vh;
+    margin: 0;
     padding: 0;
     align-items: center;
     justify-content: center;
