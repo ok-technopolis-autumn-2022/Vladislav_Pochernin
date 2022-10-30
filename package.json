@@ -16,6 +16,7 @@
     "is-glob": "^4.0.3",
     "is-number": "^7.0.0",
     "normalize-path": "^3.0.0",
+    "parcel-bundler": "^1.12.5",
     "picomatch": "^2.3.1",
     "readdirp": "^3.6.0",
     "sass": "^1.55.0",
@@ -23,6 +24,7 @@
     "to-regex-range": "^5.0.1"
   },
   "scripts": {
+    "dev": "parcel src/index.html",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -34,5 +36,8 @@
   "bugs": {
     "url": "https://github.com/ok-technopolis-autumn-2022/Vladislav_Pochernin/issues"
   },
-  "homepage": "https://github.com/ok-technopolis-autumn-2022/Vladislav_Pochernin#readme"
+  "homepage": "https://github.com/ok-technopolis-autumn-2022/Vladislav_Pochernin#readme",
+  "devDependencies": {
+    "@parcel/transformer-sass": "^2.7.0"
+  }
 }
