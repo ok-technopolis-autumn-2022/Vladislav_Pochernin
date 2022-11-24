@@ -36,6 +36,10 @@ function createLi(task) {
     const span = document.createElement('span');
     span.className = 'task-item__text';
     span.textContent = task.desc;
+    const toggleDone = () => {
+        span.classList.toggle('done');
+    };
+    label.addEventListener('click', toggleDone);
 
     const deleteButton = document.createElement('input');
     deleteButton.type = 'button';
