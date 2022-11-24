@@ -78,6 +78,11 @@ input[type="checkbox"] {
     appearance: none;
 }
 
+.todo-app__create-new {
+    display: flex;
+    flex-grow: 1;
+}
+
 .todo-app__new-task-text {
     font-family: Roboto, sans-serif;
     font-style: italic;
