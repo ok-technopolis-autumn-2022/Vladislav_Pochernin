@@ -23,9 +23,7 @@ function addTask(e) {
 }
 
 function showTasks() {
-    ul.childNodes.forEach(li => {
-        li.remove();
-    });
+    ul.innerHTML = '';
 
     tasks.forEach((value, key) => {
         if (all.checked) {
@@ -128,11 +126,11 @@ function checkAllTask() {
 function clearCompleted() {
     ul.childNodes.forEach(li => {
         if (isDone.get(li.id) === true) {
-            li.remove();
             tasks.delete(li.id);
             isDone.delete(li.id)
         }
     });
+    showTasks();
 }
 
 clearCompletedButton.addEventListener('click', clearCompleted);
