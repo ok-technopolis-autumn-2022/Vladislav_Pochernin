@@ -8,6 +8,7 @@ const activeButton = document.getElementById('active')
 const completedButton = document.getElementById('completed')
 const selectAllButton = document.querySelector('.todo-app__select-all')
 const clearCompletedButton = document.querySelector('.actions-bar__clear-completed')
+const counterLabel = document.querySelector('.actions-bar__active-counter')
 
 function addTask(e) {
     e.preventDefault();
@@ -100,7 +101,7 @@ function updateCounter() {
             counter++;
         }
     })
-    document.querySelector('.actions-bar__active-counter').textContent = counter.toString() + ' items left';
+    counterLabel.textContent = counter.toString() + ' items left';
 }
 
 function selectAll() {
