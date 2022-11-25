@@ -3,56 +3,26 @@ const isDone = new Map();
 
 const form = document.querySelector('.todo-app__create-new');
 const ul = document.querySelector('.todo-app__task-list');
-const all = document.getElementById('all')
-const active = document.getElementById('active')
-const completed = document.getElementById('completed')
+const allButton = document.getElementById('all')
+const activeButton = document.getElementById('active')
+const completedButton = document.getElementById('completed')
 const selectAllButton = document.querySelector('.todo-app__select-all')
 const clearCompletedButton = document.querySelector('.actions-bar__clear-completed')
 
 function addTask(e) {
     e.preventDefault();
 
-    const taskInfo = createTask(this.description.value);
-
+    const taskInfo = createTaskInfo(this.description.value);
     const task = createLi(taskInfo);
+
     tasks.set(task.id, task);
     isDone.set(task.id, false);
+
     showTasks()
 
     this.reset();
 }
 
-function showTasks() {
-    ul.innerHTML = '';
-
-    tasks.forEach((value, key) => {
-        if (all.checked) {
-            ul.appendChild(value);
-        } else if (active.checked && isDone.get(key) === false) {
-            ul.appendChild(value);
-        } else if (completed.checked && isDone.get(key) === true) {
-            ul.appendChild(value);
-        }
-    });
-
-    updateCounter();
-}
-
-function updateCounter() {
-    let counter = 0;
-    ul.childNodes.forEach(li => {
-        if (isDone.get(li.id) === false) {
-            counter++;
-        }
-    })
-    document.querySelector('.actions-bar__active-counter').textContent = counter.toString() + ' items left';
-}
-
-/**
- *
- * @param task {{id: string | number, desc: string}}
- * @returns {string}
- */
 function createLi(task) {
     const li = document.createElement('li');
 
@@ -100,16 +70,40 @@ function createLi(task) {
     return li;
 }
 
-function createTask(desc) {
+function createTaskInfo(desc) {
     return {
         id: Date.now(),
         desc: desc
     }
 }
 
-form.addEventListener('submit', addTask)
+function showTasks() {
+    ul.innerHTML = '';
 
-function checkAllTask() {
+    tasks.forEach((value, key) => {
+        if (allButton.checked) {
+            ul.appendChild(value);
+        } else if (activeButton.checked && isDone.get(key) === false) {
+            ul.appendChild(value);
+        } else if (completedButton.checked && isDone.get(key) === true) {
+            ul.appendChild(value);
+        }
+    });
+
+    updateCounter();
+}
+
+function updateCounter() {
+    let counter = 0;
+    ul.childNodes.forEach(li => {
+        if (isDone.get(li.id) === false) {
+            counter++;
+        }
+    })
+    document.querySelector('.actions-bar__active-counter').textContent = counter.toString() + ' items left';
+}
+
+function selectAll() {
     ul.childNodes.forEach(li => {
         const span = li.querySelector('.task-item__text');
         const checkbox = li.querySelector('.task-item__status')
@@ -126,6 +120,11 @@ function checkAllTask() {
 function clearCompleted() {
     ul.childNodes.forEach(li => {
         if (isDone.get(li.id) === true) {
+            // Удаление всех listener'ов c кнопки.
+            button = li.querySelector('.task-item__delete');
+            buttonClone = button.cloneNode(true);
+            button.parentNode.replaceChild(buttonClone, button);
+
             tasks.delete(li.id);
             isDone.delete(li.id)
         }
@@ -133,10 +132,9 @@ function clearCompleted() {
     showTasks();
 }
 
+form.addEventListener('submit', addTask)
+allButton.addEventListener('click', showTasks);
+activeButton.addEventListener('click', showTasks);
+completedButton.addEventListener('click', showTasks);
+selectAllButton.addEventListener('click', selectAll);
 clearCompletedButton.addEventListener('click', clearCompleted);
-
-selectAllButton.addEventListener('click', checkAllTask);
-
-all.addEventListener('click', showTasks);
-active.addEventListener('click', showTasks);
-completed.addEventListener('click', showTasks);
