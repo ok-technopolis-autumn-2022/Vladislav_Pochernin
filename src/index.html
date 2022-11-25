@@ -7,6 +7,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100;300&display=swap" rel="stylesheet">
+    <script src="/src/index.js" defer></script>
 </head>
 <body>
 <div class="todo-app">
@@ -14,39 +15,17 @@
     <main class="todo-app__frame">
         <section class="todo-app__main-controls">
             <input type="button" class="todo-app__select-all" title="Отметить все задачи">
-            <input type="text" class="todo-app__new-task-text" placeholder="What needs to be done?"
-                   aria-label="Текст добавляемой задчи">
+            <form action="#" method="post" class="todo-app__create-new">
+                <input type="text" class="todo-app__new-task-text" placeholder="What needs to be done?"
+                       aria-label="Текст добавляемой задчи" id="description">
+            </form>
         </section>
         <section class="todo-app__tasks">
             <ul class="todo-app__task-list tasks">
-                <li class="todo-app__task-item task-item">
-                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу" id="1">
-                    <label class="task-item__status-replica" for="1"></label>
-                    <span class="task-item__text">HTML</span>
-                    <input type="button" class="task-item__delete" title="Удалить задачу">
-                </li>
-                <li class="todo-app__task-item task-item">
-                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу" id="2">
-                    <label class="task-item__status-replica" for="2"></label>
-                    <span class="task-item__text">CSS</span>
-                    <input type="button" class="task-item__delete" title="Удалить задачу">
-                </li>
-                <li class="todo-app__task-item task-item">
-                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу" id="3">
-                    <label class="task-item__status-replica" for="3"></label>
-                    <span class="task-item__text">JS</span>
-                    <input type="button" class="task-item__delete" title="Удалить задачу">
-                </li>
-                <li class="todo-app__task-item task-item">
-                    <input type="checkbox" class="task-item__status" aria-label="Отметить задачу" id="4">
-                    <label class="task-item__status-replica" for="4"></label>
-                    <span class="task-item__text">JS tools</span>
-                    <input type="button" class="task-item__delete" title="Удалить задачу">
-                </li>
             </ul>
         </section>
         <footer class="todo-app__actions-bar actions-bar">
-            <span class="actions-bar__active-counter">3 items left</span>
+            <span class="actions-bar__active-counter">0 items left</span>
             <span class="actions-bar__display-mode display-mode" role="radiogroup"
                   aria-label="Выбор режима отображения">
                 <label for="all" class="display-mode__label">
