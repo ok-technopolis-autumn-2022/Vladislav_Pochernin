@@ -26,7 +26,6 @@ function addTask(e) {
 
 function createLi(task) {
     const li = document.createElement('li');
-
     li.id = task.id;
     li.className = 'todo-app__task-item task-item';
 
@@ -43,28 +42,11 @@ function createLi(task) {
     const span = document.createElement('span');
     span.className = 'task-item__text';
     span.textContent = task.desc;
-    const toggleDone = () => {
-        span.classList.toggle('done');
-        if (span.classList.contains('done')) {
-            isDone.set(li.id, true);
-        } else {
-            isDone.set(li.id, false);
-        }
-        updateCounter();
-    };
-    label.addEventListener('click', toggleDone);
 
     const deleteButton = document.createElement('input');
     deleteButton.type = 'button';
     deleteButton.className = 'task-item__delete';
     deleteButton.title = 'Удалить задачу';
-    const deleteTask = () => {
-        deleteButton.removeEventListener('click', deleteTask);
-        li.remove();
-        tasks.delete(li.id);
-        isDone.delete(li.id);
-    };
-    deleteButton.addEventListener('click', deleteTask);
 
     li.append(input, label, span, deleteButton);
 
@@ -133,9 +115,31 @@ function clearCompleted() {
     showTasks();
 }
 
+function deleteTaskClick(event) {
+    target = event.target;
+    const li = target.parentNode;
+
+    if (target.className === 'task-item__delete') {
+        li.remove();
+        tasks.delete(li.id);
+        isDone.delete(li.id);
+    } else if (target.className === 'task-item__status-replica') {
+        const span = li.querySelector('.task-item__text');
+        span.classList.toggle('done');
+        if (span.classList.contains('done')) {
+            isDone.set(li.id, true);
+        } else {
+            isDone.set(li.id, false);
+        }
+    }
+
+    updateCounter()
+}
+
 form.addEventListener('submit', addTask)
 allButton.addEventListener('click', showTasks);
 activeButton.addEventListener('click', showTasks);
 completedButton.addEventListener('click', showTasks);
 selectAllButton.addEventListener('click', selectAll);
 clearCompletedButton.addEventListener('click', clearCompleted);
+ul.addEventListener('click', deleteTaskClick);
