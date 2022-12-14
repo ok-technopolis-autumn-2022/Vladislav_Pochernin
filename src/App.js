@@ -25,6 +25,7 @@ export class App extends Observer {
     activeButton;
     completedButton;
     counterLabel;
+    selectAllButton;
 
 
     constructor(root, store) {
@@ -40,10 +41,15 @@ export class App extends Observer {
         this.activeButton = document.getElementById('active');
         this.completedButton = document.getElementById('completed');
         this.counterLabel = document.querySelector('.actions-bar__active-counter')
+        this.selectAllButton = document.querySelector('.todo-app__select-all')
 
         // Добавляем обработчики событий.
         this.form.addEventListener('submit', this.addTask);
         this.ul.addEventListener('click', this.taskPartClick);
+        this.allButton.addEventListener('click', this.render);
+        this.activeButton.addEventListener('click', this.render);
+        this.completedButton.addEventListener('click', this.render);
+        this.selectAllButton.addEventListener('click', this.selectAll);
 
         // Подписываемся на соответствующие изменения данных.
         store.subscribe(OBSERVER_TYPE.TASK_ADDED, this);
@@ -87,9 +93,22 @@ export class App extends Observer {
     }
 
     /**
-     * Отобразить таски в приложении.
+     * Пометить все показываемые таски выполненными.
      */
-    showTasks = () => {
+    selectAll = () => {
+        const currentTasksIds = [];
+        this.ul.childNodes.forEach(li => {
+            if (this.#store.isTaskDone(Number.parseInt(li.id)) === false) {
+                currentTasksIds.push(Number.parseInt(li.id));
+            }
+        });
+        this.#store.selectAll(currentTasksIds);
+    }
+
+    /**
+     * Отрендерить приложение, опираясь на данные.
+     */
+    render = () => {
         this.ul.innerHTML = '';
 
         this.#store.getTasks().forEach((value, key) => {
@@ -101,6 +120,8 @@ export class App extends Observer {
                 this.ul.appendChild(value.createLi());
             }
         });
+
+        this.updateCounter();
     }
 
     /**
@@ -123,13 +144,11 @@ export class App extends Observer {
      */
     update(type, params) {
         if (type === OBSERVER_TYPE.TASK_ADDED) {
-            this.showTasks();
-            this.updateCounter();
+            this.render();
         } else if (type === OBSERVER_TYPE.TASK_REMOVED) {
-            this.showTasks();
-            this.updateCounter();
+            this.render();
         } else if (type === OBSERVER_TYPE.TASK_CHANGED_STATUS) {
-            this.updateCounter();
+            this.render();
         }
     }
 }

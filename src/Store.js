@@ -63,6 +63,21 @@ export class Store extends Observable {
     }
 
     /**
+     * Пометить все переданные таски выполненными.
+     *
+     * @param ids
+     */
+    selectAll(ids) {
+        ids.forEach(id => {
+            const task = this.#tasks.get(id);
+            task.isDone = !task.isDone;
+            this.#tasks.set(id, task);
+        });
+
+        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS, ids);
+    }
+
+    /**
      * Получить список хранящихся тасок.
      *
      * @return {Object}

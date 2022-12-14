@@ -7,7 +7,6 @@ const app = new App(root, store);
 
 /*
 
-const selectAllButton = document.querySelector('.todo-app__select-all')
 const clearCompletedButton = document.querySelector('.actions-bar__clear-completed')
 
 function selectAll() {
@@ -39,10 +38,5 @@ function clearCompleted() {
     showTasks();
 }
 
-form.addEventListener('submit', addTask)
-allButton.addEventListener('click', showTasks);
-activeButton.addEventListener('click', showTasks);
-completedButton.addEventListener('click', showTasks);
-selectAllButton.addEventListener('click', selectAll);
 clearCompletedButton.addEventListener('click', clearCompleted);
 */
