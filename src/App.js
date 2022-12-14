@@ -26,6 +26,7 @@ export class App extends Observer {
     completedButton;
     counterLabel;
     selectAllButton;
+    clearCompletedButton;
 
 
     constructor(root, store) {
@@ -42,6 +43,7 @@ export class App extends Observer {
         this.completedButton = document.getElementById('completed');
         this.counterLabel = document.querySelector('.actions-bar__active-counter')
         this.selectAllButton = document.querySelector('.todo-app__select-all')
+        this.clearCompletedButton = document.querySelector('.actions-bar__clear-completed')
 
         // Добавляем обработчики событий.
         this.form.addEventListener('submit', this.addTask);
@@ -50,6 +52,7 @@ export class App extends Observer {
         this.activeButton.addEventListener('click', this.render);
         this.completedButton.addEventListener('click', this.render);
         this.selectAllButton.addEventListener('click', this.selectAll);
+        this.clearCompletedButton.addEventListener('click', this.clearCompleted);
 
         // Подписываемся на соответствующие изменения данных.
         store.subscribe(OBSERVER_TYPE.TASK_ADDED, this);
@@ -96,13 +99,26 @@ export class App extends Observer {
      * Пометить все показываемые таски выполненными.
      */
     selectAll = () => {
-        const currentTasksIds = [];
+        const currentActiveTasksIds = [];
         this.ul.childNodes.forEach(li => {
             if (this.#store.isTaskDone(Number.parseInt(li.id)) === false) {
-                currentTasksIds.push(Number.parseInt(li.id));
+                currentActiveTasksIds.push(Number.parseInt(li.id));
             }
         });
-        this.#store.selectAll(currentTasksIds);
+        this.#store.selectAll(currentActiveTasksIds);
+    }
+
+    /**
+     * Удалить все выполненные задачи (которые сейчас показываются).
+     */
+    clearCompleted = () => {
+        const currentDoneTasksIds = []
+        this.ul.childNodes.forEach(li => {
+            if (this.#store.isTaskDone(Number.parseInt(li.id)) === true) {
+                currentDoneTasksIds.push(Number.parseInt(li.id));
+            }
+        });
+        this.#store.clearCompleted(currentDoneTasksIds);
     }
 
     /**
@@ -140,9 +156,8 @@ export class App extends Observer {
     /**
      * Отреагировать на изменение данных.
      * @param type {string}
-     * @param params
      */
-    update(type, params) {
+    update(type) {
         if (type === OBSERVER_TYPE.TASK_ADDED) {
             this.render();
         } else if (type === OBSERVER_TYPE.TASK_REMOVED) {

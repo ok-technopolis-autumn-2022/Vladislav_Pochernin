@@ -12,9 +12,8 @@ export class Observer {
      * Обновить подписанный Observer после изменения в Observable.
      *
      * @param type {string} тип изменения Observable.
-     * @param params {any} данные изменения Observable.
      */
-    update(type, params) {
+    update(type) {
         throw Error("Not implemented");
     }
 }

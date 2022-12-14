@@ -35,7 +35,7 @@ export class Store extends Observable {
     put(task) {
         this.#tasks.set(task.id, task);
 
-        this._signal(OBSERVER_TYPE.TASK_ADDED, task);
+        this._signal(OBSERVER_TYPE.TASK_ADDED);
     }
 
     /**
@@ -46,7 +46,7 @@ export class Store extends Observable {
     delete(id) {
         this.#tasks.delete(id);
 
-        this._signal(OBSERVER_TYPE.TASK_REMOVED, id);
+        this._signal(OBSERVER_TYPE.TASK_REMOVED);
     }
 
     /**
@@ -59,7 +59,7 @@ export class Store extends Observable {
         task.isDone = !task.isDone;
         this.#tasks.set(id, task);
 
-        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS, id);
+        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS);
     }
 
     /**
@@ -74,7 +74,20 @@ export class Store extends Observable {
             this.#tasks.set(id, task);
         });
 
-        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS, ids);
+        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS);
+    }
+
+    /**
+     * Удалить все переданные таски.
+     *
+     * @param ids
+     */
+    clearCompleted(ids) {
+        ids.forEach(id => {
+            this.#tasks.delete(id);
+        })
+
+        this._signal(OBSERVER_TYPE.TASK_REMOVED);
     }
 
     /**
