@@ -9,7 +9,7 @@ export class Observer {
 
     /**
      *
-     * Обновить подписанный Observer после изменения в Observable.
+     * Обновить подписанный Observer после изменений в Observable.
      *
      * @param type {string} тип изменения Observable.
      */

@@ -15,6 +15,7 @@ export class Task {
 
     /**
      * Создать элемент списка задач из таски.
+     *
      * @return {HTMLLIElement}
      */
     createLi() {

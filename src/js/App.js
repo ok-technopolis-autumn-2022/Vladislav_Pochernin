@@ -3,7 +3,7 @@ import {Task} from "./Task";
 import {OBSERVER_TYPE, Store} from "./Store";
 
 /**
- * Наше приложение, которое следит за изменениями данных.
+ * Наше приложение, которое следит за изменениями данных в Store.
  */
 export class App extends Observer {
     /**
@@ -72,8 +72,6 @@ export class App extends Observer {
         if (target.className === 'task-item__delete') {
             this.#store.delete(Number.parseInt(li.id));
         } else if (target.className === 'task-item__status-replica') {
-            const span = li.querySelector('.task-item__text');
-            span.classList.toggle('done');
             this.#store.changeStatus(Number.parseInt(li.id));
         }
     }
@@ -100,29 +98,33 @@ export class App extends Observer {
      */
     selectAll = () => {
         const currentActiveTasksIds = [];
+
         this.ul.childNodes.forEach(li => {
             if (this.#store.isTaskDone(Number.parseInt(li.id)) === false) {
                 currentActiveTasksIds.push(Number.parseInt(li.id));
             }
         });
+
         this.#store.selectAll(currentActiveTasksIds);
     }
 
     /**
-     * Удалить все выполненные задачи (которые сейчас показываются).
+     * Удалить все показываемые выполненные таски.
      */
     clearCompleted = () => {
         const currentDoneTasksIds = []
+
         this.ul.childNodes.forEach(li => {
             if (this.#store.isTaskDone(Number.parseInt(li.id)) === true) {
                 currentDoneTasksIds.push(Number.parseInt(li.id));
             }
         });
+
         this.#store.clearCompleted(currentDoneTasksIds);
     }
 
     /**
-     * Отрендерить приложение, опираясь на данные.
+     * Отрендерить приложение, опираясь на данные из Store.
      */
     render = () => {
         this.ul.innerHTML = '';
@@ -145,11 +147,13 @@ export class App extends Observer {
      */
     updateCounter = () => {
         let counter = 0;
+
         this.ul.childNodes.forEach(li => {
             if (this.#store.isTaskDone(Number.parseInt(li.id)) === false) {
                 counter++;
             }
         });
+
         this.counterLabel.textContent = counter.toString() + ' items left';
     }
 

@@ -16,10 +16,10 @@ export class Observable {
 
     /**
      *
-     * Подписать переданный Observer на изменения данного Observable.
+     * Подписать переданный Observer на изменения конкретного типа данного Observable.
      *
      * @param type {string} Тип изменения Observable, на который мы подписываемся.
-     * @param observer {Observer}
+     * @param observer {Observer} - Observer, который подписываем.
      */
     subscribe(type, observer) {
         if (!this._isTypeValid(type)) {
@@ -35,9 +35,9 @@ export class Observable {
 
     /**
      *
-     * Отписать переданный Observer от изменений данного Observable.
+     * Отписать переданный Observer от изменений конкретного типа данного Observable.
      * @param type {string} - Тип изменения Observable, от которого мы отписываемся.
-     * @param observer {Observer}
+     * @param observer {Observer} - Observer, который отписываем.
      */
     unsubscribe(type, observer) {
         if (!this._isTypeValid(type)) {
@@ -66,15 +66,14 @@ export class Observable {
      *
      * Уведомить все подписанные Observer'ы об изменении данного Observable.
      * @param type {string} Тип случившегося изменения Observable.
-     * @param prop Данные случившегося изменения Observable.
      * @private
      */
-    _signal(type, prop) {
+    _signal(type) {
         if (!(type in this.#observers)) {
             return;
         }
 
-        this.#observers[type].forEach(obs => obs.update(type, prop));
+        this.#observers[type].forEach(obs => obs.update(type));
     }
 
     /**

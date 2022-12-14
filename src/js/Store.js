@@ -1,4 +1,4 @@
-import {Observable} from "/observer/Observable";
+import {Observable} from "./observer/Observable";
 
 /**
  * Возможные типы изменений
