@@ -1,90 +1,14 @@
-const tasks = new Map();
-const isDone = new Map();
+import {Store} from "./Store";
+import {App} from "./App";
 
-const form = document.querySelector('.todo-app__create-new');
-const ul = document.querySelector('.todo-app__task-list');
-const allButton = document.getElementById('all')
-const activeButton = document.getElementById('active')
-const completedButton = document.getElementById('completed')
+const root = document.querySelector('.todo-app');
+const store = new Store();
+const app = new App(root, store);
+
+/*
+
 const selectAllButton = document.querySelector('.todo-app__select-all')
 const clearCompletedButton = document.querySelector('.actions-bar__clear-completed')
-const counterLabel = document.querySelector('.actions-bar__active-counter')
-
-function addTask(e) {
-    e.preventDefault();
-
-    const taskInfo = createTaskInfo(this.description.value);
-    const task = createLi(taskInfo);
-
-    tasks.set(task.id, task);
-    isDone.set(task.id, false);
-
-    showTasks()
-
-    this.reset();
-}
-
-function createLi(task) {
-    const li = document.createElement('li');
-    li.id = task.id;
-    li.className = 'todo-app__task-item task-item';
-
-    const input = document.createElement('input');
-    input.id = task.id + 1;
-    input.type = 'checkbox';
-    input.className = 'task-item__status';
-    input.ariaLabel = 'Отметить задачу';
-
-    const label = document.createElement('label');
-    label.className = 'task-item__status-replica';
-    label.htmlFor = task.id + 1;
-
-    const span = document.createElement('span');
-    span.className = 'task-item__text';
-    span.textContent = task.desc;
-
-    const deleteButton = document.createElement('input');
-    deleteButton.type = 'button';
-    deleteButton.className = 'task-item__delete';
-    deleteButton.title = 'Удалить задачу';
-
-    li.append(input, label, span, deleteButton);
-
-    return li;
-}
-
-function createTaskInfo(desc) {
-    return {
-        id: Date.now(),
-        desc: desc
-    }
-}
-
-function showTasks() {
-    ul.innerHTML = '';
-
-    tasks.forEach((value, key) => {
-        if (allButton.checked) {
-            ul.appendChild(value);
-        } else if (activeButton.checked && isDone.get(key) === false) {
-            ul.appendChild(value);
-        } else if (completedButton.checked && isDone.get(key) === true) {
-            ul.appendChild(value);
-        }
-    });
-
-    updateCounter();
-}
-
-function updateCounter() {
-    let counter = 0;
-    ul.childNodes.forEach(li => {
-        if (isDone.get(li.id) === false) {
-            counter++;
-        }
-    })
-    counterLabel.textContent = counter.toString() + ' items left';
-}
 
 function selectAll() {
     ul.childNodes.forEach(li => {
@@ -143,3 +67,4 @@ completedButton.addEventListener('click', showTasks);
 selectAllButton.addEventListener('click', selectAll);
 clearCompletedButton.addEventListener('click', clearCompleted);
 ul.addEventListener('click', deleteTaskClick);
+*/
