@@ -39,32 +39,10 @@ function clearCompleted() {
     showTasks();
 }
 
-function deleteTaskClick(event) {
-    target = event.target;
-    const li = target.parentNode;
-
-    if (target.className === 'task-item__delete') {
-        li.remove();
-        tasks.delete(li.id);
-        isDone.delete(li.id);
-    } else if (target.className === 'task-item__status-replica') {
-        const span = li.querySelector('.task-item__text');
-        span.classList.toggle('done');
-        if (span.classList.contains('done')) {
-            isDone.set(li.id, true);
-        } else {
-            isDone.set(li.id, false);
-        }
-    }
-
-    updateCounter()
-}
-
 form.addEventListener('submit', addTask)
 allButton.addEventListener('click', showTasks);
 activeButton.addEventListener('click', showTasks);
 completedButton.addEventListener('click', showTasks);
 selectAllButton.addEventListener('click', selectAll);
 clearCompletedButton.addEventListener('click', clearCompleted);
-ul.addEventListener('click', deleteTaskClick);
 */

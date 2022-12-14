@@ -43,9 +43,30 @@ export class App extends Observer {
 
         // Добавляем обработчики событий.
         this.form.addEventListener('submit', this.addTask);
+        this.ul.addEventListener('click', this.taskPartClick);
 
         // Подписываемся на соответствующие изменения данных.
         store.subscribe(OBSERVER_TYPE.TASK_ADDED, this);
+        store.subscribe(OBSERVER_TYPE.TASK_REMOVED, this);
+        store.subscribe(OBSERVER_TYPE.TASK_CHANGED_STATUS, this);
+    }
+
+    /**
+     * Обработка нажатия на часть таски (изменение статуса или удаление).
+     *
+     * @param e
+     */
+    taskPartClick = (e) => {
+        const target = e.target;
+        const li = target.parentNode;
+
+        if (target.className === 'task-item__delete') {
+            this.#store.delete(Number.parseInt(li.id));
+        } else if (target.className === 'task-item__status-replica') {
+            const span = li.querySelector('.task-item__text');
+            span.classList.toggle('done');
+            this.#store.changeStatus(Number.parseInt(li.id));
+        }
     }
 
     /**
@@ -88,7 +109,7 @@ export class App extends Observer {
     updateCounter = () => {
         let counter = 0;
         this.ul.childNodes.forEach(li => {
-            if (this.#store.isTaskDone(li.id) === false) {
+            if (this.#store.isTaskDone(Number.parseInt(li.id)) === false) {
                 counter++;
             }
         });
@@ -103,6 +124,11 @@ export class App extends Observer {
     update(type, params) {
         if (type === OBSERVER_TYPE.TASK_ADDED) {
             this.showTasks();
+            this.updateCounter();
+        } else if (type === OBSERVER_TYPE.TASK_REMOVED) {
+            this.showTasks();
+            this.updateCounter();
+        } else if (type === OBSERVER_TYPE.TASK_CHANGED_STATUS) {
             this.updateCounter();
         }
     }

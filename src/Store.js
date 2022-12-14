@@ -39,6 +39,30 @@ export class Store extends Observable {
     }
 
     /**
+     * Удалить таску.
+     *
+     * @param id{number}
+     */
+    delete(id) {
+        this.#tasks.delete(id);
+
+        this._signal(OBSERVER_TYPE.TASK_REMOVED, id);
+    }
+
+    /**
+     * Изменить статус таски.
+     *
+     * @param id{number}
+     */
+    changeStatus(id) {
+        const task = this.#tasks.get(id);
+        task.isDone = !task.isDone;
+        this.#tasks.set(id, task);
+
+        this._signal(OBSERVER_TYPE.TASK_CHANGED_STATUS, id);
+    }
+
+    /**
      * Получить список хранящихся тасок.
      *
      * @return {Object}

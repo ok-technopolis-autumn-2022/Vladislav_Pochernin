@@ -27,6 +27,9 @@ export class Task {
         input.type = 'checkbox';
         input.className = 'task-item__status';
         input.ariaLabel = 'Отметить задачу';
+        if (this.isDone) {
+            input.checked = true;
+        }
 
         const label = document.createElement('label');
         label.className = 'task-item__status-replica';
@@ -35,6 +38,9 @@ export class Task {
         const span = document.createElement('span');
         span.className = 'task-item__text';
         span.textContent = this.desc;
+        if (this.isDone) {
+            span.classList.toggle('done');
+        }
 
         const deleteButton = document.createElement('input');
         deleteButton.type = 'button';
