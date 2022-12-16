@@ -162,12 +162,11 @@ export class App extends Observer {
      * @param type {string}
      */
     update(type) {
-        if (type === OBSERVER_TYPE.TASK_ADDED) {
-            this.render();
-        } else if (type === OBSERVER_TYPE.TASK_REMOVED) {
-            this.render();
-        } else if (type === OBSERVER_TYPE.TASK_CHANGED_STATUS) {
-            this.render();
+        switch (type) {
+            case OBSERVER_TYPE.TASK_ADDED:
+            case OBSERVER_TYPE.TASK_REMOVED:
+            case OBSERVER_TYPE.TASK_CHANGED_STATUS:
+                this.render();
         }
     }
 }
